@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORDER TRACKING-DHL</title>
+</head>
+<style>
+    body{
+        background-color: rgb(232, 224, 224);
+    }
+    /* Header Styles */
+    header{
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 12%;   
+        display: flex;
+        justify-content: space-evenly; 
+        align-items: center; 
+        border: 1px dotted goldenrod;
+        z-index: 100;
+    }
+    .AdminUpdate{
+        background: linear-gradient(rgb(201, 175, 27), red);
+        height: 40px;
+        padding: 5px;
+        border-radius: 7px;
+        position: relative;
+    }
+    .Help{
+        background: linear-gradient(rgb(201, 175, 27), red);
+        height: 30px;
+        width: 20px;
+        padding: 2px;
+        border-radius: 5px;
+    }
+    .middleHeader{
+        width: 60%;
+        background: linear-gradient(rgb(201, 175, 27), red);
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        box-shadow: 2px 2px 2px rgba(0.5, 0.5, 0.5, 0.5), -2px -2px 2px rgba(0.5, 0.5, 0.5, 0.5);
+    }
+    header div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+        header p{
+            font-size: bolder;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+            box-shadow:inset -2px -2px 2px rgba(0.5, 0.5, 0.5, 0.5),inset  2px 2px 2px rgba(0.5, 0.5, 0.5, 0.5);
+            padding: 3px;
+        }
+        .welcome{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: medium;
+        }
+        .customerName{
+            font-weight: bold;
+            font-style: italic;
+            padding-left: 5px;
+        }
+        /* greetings Styles */
+        .greetings{
+            position: fixed;
+            top: 15%;
+            display: flex;
+        }
+        /* Main Styles */
+        main{
+            background: linear-gradient(red, rgb(201, 175, 27));
+            position: absolute;
+            top: 25%;
+            left: 5%;
+            padding: 10px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            
+        }
+
+        .details{
+            margin-top: 20px;
+        }
+        .statusHeading{
+            background-color: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            font-family: 'Courier New', Courier, monospace;
+
+        }
+        .detailing{
+            background-color: transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border: 0.5px dotted goldenrod;
+        }
+        .status{
+            background-color: grey;
+            margin-left: 15px;
+            width: auto;
+            padding: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            color: rgb(78, 211, 78);
+            font-style: italic;
+        }
+        .detailing p{
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;
+            color: rgb(37, 33, 33);
+        }
+        /* Admin Update password Area */
+        .adminUpdateDashboard{
+            background-color: grey;
+            width: 200px;
+            flex-direction: column;
+            justify-content: space-between;
+            position: absolute;
+            align-items: center;
+            top: 105%;
+            left: -110%;
+            border-radius: 10px;
+            font-weight: lighter;
+            font-size: 20px;
+            display: none;
+        }
+        .displayAdmin{
+            background-color: grey;
+            position: absolute;
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            top: 125%;
+            left: -110%;
+            border-radius: 10px;
+            font-weight: lighter;
+            font-size: 20px;
+        }
+        .logins input{
+            height: 25px;
+            width: 150px;
+            outline: 1px double greenyellow;
+            border-radius: 5px;
+        }
+        .logins button{
+            padding: 5px;
+            margin-top: 10px;
+            background-color: greenyellow;
+            border: none;
+            border-radius: 3px;
+        }
+        .logins{
+            display: flex;
+            padding: 10px;
+            flex-direction: column;
+            justify-content: space-between; 
+        }  
+        .admindisplay-cancel{
+            font-size: 65%;
+            width: 90%;
+        }  
+        .admindisplay-cancel button{
+            margin-right: 15px;
+            background-color: black;
+            color: red;
+            border: none;
+         }
+         /* Update Now Styles*/
+         .updateArea{
+            background-color: grey;
+            position: absolute;
+            padding: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            z-index: 200;
+            display: none;
+         }
+         .displayAdminPage{
+            background-color: grey;
+            position: absolute;
+            padding: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            z-index: 200;
+         }
+         .Status-Edit-Update{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+         }
+         .Status-Edit-Update button, input{
+            height: 30px;
+            width: 65px;
+            border: none;
+            outline: none;
+            margin-left: 10px;
+         }
+         .Status-Edit-Update button{
+            background-color: greenyellow;
+            color: white;
+            border-radius: 5px;
+         }
+         .Status-Edit-Update p{
+            font-style: oblique;
+            color: rgb(219, 210, 210);
+         }
+         .updateAll button{
+            background-color: greenyellow;
+            color: white;
+            border-radius: 5px;
+            height: 30px;
+            width: 80px;
+            border: none;
+            outline: none;
+         }
+     
+        
+</style>
+<body>
+    <header>
+
+        <div class="Help">?</div>
+        
+        <div class="middleHeader">
+            <p>ORDER-TRACK DETAILS</p>
+        </div>
+
+        
+        <div class="AdminUpdate" onclick="
+            toggleAdminUpdateArea();
+            ">
+            <div class="js-loginAdmin adminUpdateDashboard">
+                <div class="admindisplay-cancel">
+                    <button>✕</button>
+                    <p>Admin Area</p>
+                </div>
+                <div class="logins">
+                    <input class="js-LoginAdimUpdate" type="password" placeholder="Admin Password">
+                    <button onclick="
+                    loginAdmin();
+                    ">Enter</button>
+                </div>
+            </div>
+        
+
+            
+            UPDATE</div>
+            
+            
+    </header>
+
+    
+    <div class="greetings">
+        <p class="welcome">Welcome 👋,</p>
+        <p class="js-inputCustomerName customerName">Customer</p>
+    </div>
+
+    <main>
+
+        <section class="statusHeading">
+            <div>STATUS</div>
+        </section>
+
+        <section class="details">
+            <div class="detailing">
+                <p>Goods-</p>
+                <div class="status js-bought">Bought ✓</div> 
+            </div>
+
+            <div class="detailing">
+                <p>Shipped-</p>
+                <div class="status  js-shipped">Order Shipped ✓</div>
+            </div>
+
+            <div class="detailing">
+                <p>Where-</p>
+                <div class="status js-where"></div>
+            </div>
+
+            <div class="detailing">
+                <p>Arrival-</p>
+                <div class="status js-arrival">11th Tue, May 2026.</div>
+            </div>
+
+            <div class="detailing">
+                <p>Cost-</p>
+                <div class="status js-cost">$85</div>
+            </div>
+
+        </section>
+    </main>
+
+    <div class="js-updatePage updateArea">
+        <div class="Status-Edit-Update">
+            <div><p>Goods-</p></div>
+            <div><input class="js-GoodsStatus"></div>
+            <div><button>Update</button></div>         
+        </div>
+
+        <div class="Status-Edit-Update">
+            <div><p>Shipped-</p></div>
+            <div><input class="js-shipStatus"></div>
+            <div><button>Update</button></div>         
+        </div>
+
+        <div class="Status-Edit-Update">
+            <div><p>Where-</p></div>
+            <div><input class="js-WhereStatus"></div>
+            <div><button>Update</button></div>         
+        </div>
+
+        <div class="Status-Edit-Update">
+            <div><p>Arrival-</p></div>
+            <div><input class="js-ArrivalStatus"></div>
+            <div><button>Update</button></div>         
+        </div>
+
+        <div class="Status-Edit-Update">
+            <div><p>Cost-</p></div>
+            <div><input class="js-CostStatus"></div>
+            <div><button>Update</button></div>         
+        </div>
+
+
+        <div class="updateAll">
+            <button onclick="
+                UpdatingStatus();
+                ">Update All</button>
+        </div>  
+    </div>
+
+
+
+        <script src="OTP.js"></script>
+    
+</body>
+</html>
